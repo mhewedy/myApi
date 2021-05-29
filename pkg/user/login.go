@@ -12,7 +12,7 @@ import (
 // @Accept json
 // @Param  profile body user.loginDTO true "Login"
 // @Success 200
-// @Router /api/login [post]
+// @Router /login [post]
 func Login(c echo.Context) error {
 
 	var l loginDTO

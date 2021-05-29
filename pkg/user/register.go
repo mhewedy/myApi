@@ -12,7 +12,7 @@ import (
 // @Accept json
 // @Param  profile body user.createUserDTO true "Register user"
 // @Success 200
-// @Router /api/register [post]
+// @Router /register [post]
 func RegisterUser(c echo.Context) error {
 
 	var dto createUserDTO
