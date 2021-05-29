@@ -1,25 +1,30 @@
 package user
 
 import (
+	"github.com/go-playground/validator"
 	"myApi/pkg/commons/errors"
 )
 
+var (
+	Validate *validator.Validate
+)
+
+// --------------------------------------------------------
+
 type createUserDTO struct {
 	Username string `json:"username" validate:"required"`
-	Password string `json:"password" validate:"required"`
+	Password string `json:"password" validate:"required,min=6"`
 }
 
-func (dto createUserDTO) validate() error {
+func (dto createUserDTO) alreadyExists() error {
 	// TODO
+	//if ok {
+	//	return errors.Client("username_already_exists", dto.Username)
+	//}
 	return nil
 }
 
-func (dto createUserDTO) alreadyExists() (bool, error) {
-	// TODO
-	return false, nil
-}
-
-// -----------------------------
+// --------------------------------------------------------
 
 type loginDTO struct {
 	Username string `json:"username" validate:"required"`

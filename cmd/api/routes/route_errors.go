@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 	"myApi/pkg/commons/errors"
@@ -35,6 +36,13 @@ func buildHTTPErrorHandlerFunc(e *echo.Echo) echo.HTTPErrorHandler {
 				err = echo.NewHTTPError(http.StatusBadRequest, h.Key)
 			} else {
 				err = echo.NewHTTPError(http.StatusInternalServerError, h.Key)
+			}
+		}
+
+		v, ok := err.(validator.ValidationErrors)
+		if ok {
+			if len(v) > 0 {
+				err = echo.NewHTTPError(http.StatusBadRequest, v[0].(error).Error())
 			}
 		}
 

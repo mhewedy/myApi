@@ -19,6 +19,11 @@ func Login(c echo.Context) error {
 	if err := c.Bind(&l); err != nil {
 		return err
 	}
+
+	if err := Validate.Struct(l); err != nil {
+		return err
+	}
+
 	if err := l.validate(); err != nil {
 		return err
 	}

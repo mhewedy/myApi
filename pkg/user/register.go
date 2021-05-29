@@ -2,7 +2,6 @@ package user
 
 import (
 	"github.com/labstack/echo/v4"
-	"myApi/pkg/commons/errors"
 	"net/http"
 )
 
@@ -19,16 +18,13 @@ func RegisterUser(c echo.Context) error {
 	if err := c.Bind(&dto); err != nil {
 		return err
 	}
-	if err := dto.validate(); err != nil {
+
+	if err := Validate.Struct(dto); err != nil {
 		return err
 	}
 
-	ok, err := dto.alreadyExists()
-	if err != nil {
+	if err := dto.alreadyExists(); err != nil {
 		return err
-	}
-	if ok {
-		return errors.Client("username_already_exists", dto.Username)
 	}
 
 	user := &User{

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
 	"gorm.io/gorm"
@@ -31,7 +32,9 @@ func main() {
 
 	db := dbutil.New()
 	dbutil.Migrate(db)
+
 	injectDBRefs(db)
+	injectValidatorRefs(validator.New())
 
 	go func() {
 		time.Sleep(50 * time.Millisecond)
@@ -50,4 +53,8 @@ func main() {
 func injectDBRefs(db *gorm.DB) {
 	health.DB = db
 	user.DB = db
+}
+
+func injectValidatorRefs(v *validator.Validate) {
+	user.Validate = v
 }
