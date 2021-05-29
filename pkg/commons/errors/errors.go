@@ -11,7 +11,7 @@ func (h *E) Error() string {
 }
 
 // New Client error
-func New(key string, extra ...string) error {
+func Client(key string, extra ...string) error {
 	return &E{
 		Key:     key,
 		Client:  true,
@@ -20,7 +20,7 @@ func New(key string, extra ...string) error {
 }
 
 // New server error
-func Err(key string, extra ...string) error {
+func Server(key string, extra ...string) error {
 	return &E{
 		Key:     key,
 		Client:  false,

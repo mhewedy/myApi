@@ -34,11 +34,11 @@ func (u *User) login() error {
 
 	if err != nil {
 		verifyFakeHash()
-		return errors.New("invalid_username_or_password", fmt.Sprintf("user not found: %s", u.Username))
+		return errors.Client("invalid_username_or_password", fmt.Sprintf("user not found: %s", u.Username))
 	}
 
 	if !verifyHash(dbu.Password, u.Password) {
-		return errors.New("invalid_username_or_password", u.Username)
+		return errors.Client("invalid_username_or_password", u.Username)
 	}
 
 	u.ID = dbu.ID

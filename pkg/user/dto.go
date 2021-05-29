@@ -28,10 +28,10 @@ type loginDTO struct {
 
 func (l loginDTO) validate() error {
 	if l.Username == "" || l.Password == "" {
-		return errors.New("username_or_password_validation_failed")
+		return errors.Client("username_or_password_validation_failed")
 	}
 	if len(l.Password) < 6 {
-		return errors.New("password_validation_failed")
+		return errors.Client("password_validation_failed")
 	}
 	return nil
 }

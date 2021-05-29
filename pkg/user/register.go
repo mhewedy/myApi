@@ -28,7 +28,7 @@ func RegisterUser(c echo.Context) error {
 		return err
 	}
 	if ok {
-		return errors.New("username_already_exists", dto.Username)
+		return errors.Client("username_already_exists", dto.Username)
 	}
 
 	user := &User{
