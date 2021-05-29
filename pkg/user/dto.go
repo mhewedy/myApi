@@ -41,3 +41,10 @@ type loginDTO struct {
 	Username string `json:"username" validate:"required"`
 	Password string `json:"password" validate:"required"`
 }
+
+// --------------------------------------------------------
+
+type profileDTO struct {
+	ID       uint   `json:"id"`
+	Username string `json:"username"`
+}

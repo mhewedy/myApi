@@ -44,3 +44,14 @@ func (u *User) login() error {
 	u.ID = dbu.ID
 	return nil
 }
+
+func findUserById(id uint) (*profileDTO, error) {
+
+	var p profileDTO
+
+	if err := DB.Model(&User{}).Where("id = ? ", id).First(&p).Error; err != nil {
+		return nil, err
+	}
+
+	return &p, nil
+}
