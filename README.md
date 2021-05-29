@@ -2,13 +2,13 @@
 
 ### prerequisite:
 
-1. run `./rename.sh` to rename the application. e.g. `./rename.sh todoApi`
+1. run `./rename` to rename the application. e.g. `./rename todoApi`
 
-2. run `./create-db.sh` to create docker-based postgres database
+2. run `./create-db` to create docker-based postgres database
 
 3. run `go get -d ./...` to install all dependencies
 
-4. run `./run.sh` to run the app   
+4. run `./start` to run the app   
 it requires the following golang utilities:
 ```
 go get -u github.com/codegangsta/gin			# for gin the live reload utility

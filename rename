@@ -9,9 +9,9 @@ fi
 appName=$1
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  find ./ -type f -not -path ".//.git/*" -not -path ".//rename.sh" -exec sed -i "s/myApi/$appName/g" {} \;
+  find ./ -type f -not -path ".//.git/*" -not -path ".//rename" -exec sed -i "s/myApi/$appName/g" {} \;
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  find ./ -type f -not -path ".//.git/*" -not -path ".//rename.sh" -exec sed -i '' "s/myApi/$appName/g" {} \;
+  find ./ -type f -not -path ".//.git/*" -not -path ".//rename" -exec sed -i '' "s/myApi/$appName/g" {} \;
 else
   echo "Unsupported OS"
   exit -1
