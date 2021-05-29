@@ -1,0 +1,14 @@
+### Intellij/Goland ###
+.idea/
+*.iml
+
+# Dependency directories
+# vendor/
+
+### VisualStudioCode ###
+.vscode/
+*.code-workspace
+
+# for the template myApi
+.gin-bin
+docs/
