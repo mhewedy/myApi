@@ -33,6 +33,7 @@ func main() {
 	db := dbutil.New()
 	dbutil.Migrate(db)
 
+	// setting reference
 	injectDBRefs(db)
 	injectValidatorRefs(validator.New())
 
@@ -41,9 +42,11 @@ func main() {
 		fmt.Printf("⇨ myApi started at: http://localhost%s/swagger/index.html\n", address)
 	}()
 
-	// setting up echo
+	// setting up echo logger
 	logFormat := `time=${time_rfc3339_nano} level=${level} file=${short_file} line=${line}`
 	log.SetHeader(logFormat)
+
+	// setting up echo
 	e := echo.New()
 	e.Logger.SetHeader(logFormat)
 	routes.Configure(e)

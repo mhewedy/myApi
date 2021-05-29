@@ -23,7 +23,7 @@ func RegisterUser(c echo.Context) error {
 		return err
 	}
 
-	if err := dto.alreadyExists(); err != nil {
+	if err := dto.checkAlreadyExists(); err != nil {
 		return err
 	}
 

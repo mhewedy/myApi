@@ -16,11 +16,22 @@ type createUserDTO struct {
 	Password string `json:"password" validate:"required,min=6"`
 }
 
-func (dto createUserDTO) alreadyExists() error {
-	// TODO
-	//if ok {
-	//	return errors.Client("username_already_exists", dto.Username)
-	//}
+func (dto createUserDTO) checkAlreadyExists() error {
+
+	var count int64
+	err := DB.
+		Model(&User{}).
+		Where("username = ?", dto.Username).
+		Count(&count).Error
+
+	if err != nil {
+		return err
+	}
+
+	if count > 0 {
+		return errors.Client("username_already_exists", dto.Username)
+	}
+
 	return nil
 }
 
@@ -29,14 +40,4 @@ func (dto createUserDTO) alreadyExists() error {
 type loginDTO struct {
 	Username string `json:"username" validate:"required"`
 	Password string `json:"password" validate:"required"`
-}
-
-func (l loginDTO) validate() error {
-	if l.Username == "" || l.Password == "" {
-		return errors.Client("username_or_password_validation_failed")
-	}
-	if len(l.Password) < 6 {
-		return errors.Client("password_validation_failed")
-	}
-	return nil
 }

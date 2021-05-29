@@ -24,10 +24,6 @@ func Login(c echo.Context) error {
 		return err
 	}
 
-	if err := l.validate(); err != nil {
-		return err
-	}
-
 	u := &User{
 		Username: l.Username,
 		Password: l.Password,
