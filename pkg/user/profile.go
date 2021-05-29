@@ -6,11 +6,12 @@ import (
 )
 
 //
-// @Summary Register new user
+// @Summary Get user profile
 // @Description
 // @Produce json
 // @Success 200 {object} user.profileDTO "User Profile"
 // @Router /users/profile [get]
+// @Security ApiKeyAuth
 func Profile(c echo.Context) error {
 
 	id, _ := jwt.GetUser(c)

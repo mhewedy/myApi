@@ -16,7 +16,7 @@ func CreateToken(id uint, username string) (string, error) {
 	claims := token.Claims.(jwt.MapClaims)
 	claims["id"] = id
 	claims["name"] = username
-	claims["exp"] = time.Now().AddDate(10, 0, 0).Unix() // expires in 10 years -- to avoid ionic storage bug:)
+	claims["exp"] = time.Now().AddDate(10, 0, 0).Unix() // expires in 10 years
 	// Generate encoded token and send it as response.
 	return token.SignedString([]byte(Secret))
 }
