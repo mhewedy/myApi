@@ -10,5 +10,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o api cmd/api/main.go
 
 FROM alpine
 WORKDIR /app
-COPY --from=builder /app/api /app/app.conf /app/db/migrations ./
+COPY --from=builder /app/api /app/app.conf ./
+COPY --from=builder /app/db/migrations ./db/migrations
 ENTRYPOINT ["/app/api"]
