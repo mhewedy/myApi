@@ -2,6 +2,7 @@ package user
 
 import (
 	"github.com/labstack/echo/v4"
+	"myApi/pkg/commons"
 	"net/http"
 )
 
@@ -12,6 +13,7 @@ import (
 // @Param  profile body user.createUserDTO true "Register user"
 // @Success 200
 // @Router /register [post]
+// @Tags user
 func RegisterUser(c echo.Context) error {
 
 	var dto createUserDTO
@@ -19,7 +21,7 @@ func RegisterUser(c echo.Context) error {
 		return err
 	}
 
-	if err := Validate.Struct(dto); err != nil {
+	if err := commons.Validate.Struct(dto); err != nil {
 		return err
 	}
 

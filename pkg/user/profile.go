@@ -12,6 +12,7 @@ import (
 // @Success 200 {object} user.profileDTO "User Profile"
 // @Router /users/profile [get]
 // @Security ApiKeyAuth
+// @Tags user
 func Profile(c echo.Context) error {
 
 	id, _ := jwt.GetUser(c)

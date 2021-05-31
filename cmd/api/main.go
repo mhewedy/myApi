@@ -2,14 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
-	"gorm.io/gorm"
 	"myApi/cmd/api/routes"
-	"myApi/pkg/commons/dbutil"
-	"myApi/pkg/health"
-	"myApi/pkg/user"
+	"myApi/pkg/commons"
 	"time"
 )
 
@@ -34,12 +30,10 @@ import (
 func main() {
 	address := ":8080"
 
-	db := dbutil.New()
-	dbutil.Migrate(db)
+	db := commons.InitDB()
+	commons.InitValidate()
 
-	// setting reference
-	injectDBRefs(db)
-	injectValidatorRefs(validator.New())
+	commons.Migrate(db)
 
 	go func() {
 		time.Sleep(50 * time.Millisecond)
@@ -55,13 +49,4 @@ func main() {
 	e.Logger.SetHeader(logFormat)
 	routes.Configure(e)
 	e.Logger.Fatal(e.Start(address))
-}
-
-func injectDBRefs(db *gorm.DB) {
-	health.DB = db
-	user.DB = db
-}
-
-func injectValidatorRefs(v *validator.Validate) {
-	user.Validate = v
 }

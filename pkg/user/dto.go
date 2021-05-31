@@ -1,12 +1,8 @@
 package user
 
 import (
-	"github.com/go-playground/validator"
+	"myApi/pkg/commons"
 	"myApi/pkg/commons/errors"
-)
-
-var (
-	Validate *validator.Validate
 )
 
 // --------------------------------------------------------
@@ -19,7 +15,7 @@ type createUserDTO struct {
 func (dto createUserDTO) checkAlreadyExists() error {
 
 	var count int64
-	err := DB.
+	err := commons.DB.
 		Model(&User{}).
 		Where("username = ?", dto.Username).
 		Count(&count).Error

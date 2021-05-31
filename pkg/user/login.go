@@ -2,6 +2,7 @@ package user
 
 import (
 	"github.com/labstack/echo/v4"
+	"myApi/pkg/commons"
 	"myApi/pkg/user/jwt"
 	"net/http"
 )
@@ -13,6 +14,7 @@ import (
 // @Param  profile body user.loginDTO true "Login"
 // @Success 200
 // @Router /login [post]
+// @Tags user
 func Login(c echo.Context) error {
 
 	var l loginDTO
@@ -20,7 +22,7 @@ func Login(c echo.Context) error {
 		return err
 	}
 
-	if err := Validate.Struct(l); err != nil {
+	if err := commons.Validate.Struct(l); err != nil {
 		return err
 	}
 

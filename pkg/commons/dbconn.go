@@ -1,4 +1,4 @@
-package dbutil
+package commons
 
 import (
 	"fmt"
@@ -12,7 +12,11 @@ import (
 	"time"
 )
 
-func New() *gorm.DB {
+var (
+	DB *gorm.DB
+)
+
+func InitDB() *gorm.DB {
 
 	var (
 		host     = conf.Get("db.host")
@@ -34,12 +38,13 @@ func New() *gorm.DB {
 		},
 	)
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: newLogger})
+	var err error
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: newLogger})
 	if err != nil {
 		panic(err)
 	}
 
-	sqlDB, err := db.DB()
+	sqlDB, err := DB.DB()
 	if err != nil {
 		panic(err)
 	}
@@ -49,5 +54,5 @@ func New() *gorm.DB {
 	sqlDB.SetMaxIdleConns(25)
 	sqlDB.SetConnMaxLifetime(5 * time.Minute)
 
-	return db
+	return DB
 }

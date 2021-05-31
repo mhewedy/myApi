@@ -4,7 +4,7 @@
 
 1. run `./rename` to rename the application. e.g. `./rename todoApi`
 
-2. run `./create-db` to create docker-based postgres database
+2. run `./etc/create-db` to create docker-based postgres database
 
 3. run `go get -d ./...` to install all dependencies
 

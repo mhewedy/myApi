@@ -4,20 +4,16 @@ import (
 	"context"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
-	"gorm.io/gorm"
+	"myApi/pkg/commons"
 	"net/http"
 	"time"
-)
-
-var (
-	DB *gorm.DB
 )
 
 func Check(c echo.Context) error {
 
 	m := make(map[string]string)
 
-	sqlDB, err := DB.DB()
+	sqlDB, err := commons.DB.DB()
 	if err != nil {
 		panic(err)
 	}

@@ -1,4 +1,4 @@
-package dbutil
+package commons
 
 import (
 	"github.com/golang-migrate/migrate/v4"
@@ -29,5 +29,4 @@ func Migrate(db *gorm.DB) {
 			panic(err)
 		}
 	}
-
 }

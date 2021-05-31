@@ -4,12 +4,9 @@ import (
 	"fmt"
 	"github.com/labstack/gommon/log"
 	"gorm.io/gorm"
+	"myApi/pkg/commons"
 	"myApi/pkg/commons/errors"
 	"strings"
-)
-
-var (
-	DB *gorm.DB
 )
 
 type User struct {
@@ -21,13 +18,13 @@ type User struct {
 
 func (u *User) register() error {
 	log.Infof("create user: %s", u.Username)
-	return DB.Create(u).Error
+	return commons.DB.Create(u).Error
 }
 
 func (u *User) login() error {
 
 	var dbu User
-	err := DB.
+	err := commons.DB.
 		Select("id", "password").
 		Where("lower(username) = ? and active = true", strings.ToLower(u.Username)).
 		First(&dbu).Error
@@ -49,7 +46,7 @@ func findUserById(id uint) (*profileDTO, error) {
 
 	var p profileDTO
 
-	if err := DB.Model(&User{}).Where("id = ? ", id).First(&p).Error; err != nil {
+	if err := commons.DB.Model(&User{}).Where("id = ? ", id).First(&p).Error; err != nil {
 		return nil, err
 	}
 
