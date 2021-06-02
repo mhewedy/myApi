@@ -16,11 +16,12 @@ It contains:
 * health check endpoint.
 * Multistage Dockerfile
 * Gitlab CI script.
+* Database scheama migration files found under `db/migrations`
 
 ## How it differ from xyz:
-Unlinke other templates or tools, myApi is adapting the idea of module monolithc, in which you can use  `pkg/<module_name>` to host user modules, (e.g. `pkg/user` and `pkg/health`).    
+Unlinke other templates or tools, myApi is adapting the idea of modular monolithc, in which you can use  `pkg/<module_name>` to host user modules, (e.g. `pkg/user` and `pkg/health`).    
 
-Where code in such modules can acccess to shared services via the `pkg/commons` modules. e.g `commons.DB` to access gorm DB object and `commons.Validate` to access Validate object. (You can put shared services here to such as Redis Client)
+The code in the moules can acccess shared services via the `pkg/commons` modules. e.g `commons.DB` to access gorm DB object and `commons.Validate` to access Validate object. (You can put shared services here to such as `Redis` Client)
 
 ### How to use it:
 
