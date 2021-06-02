@@ -1,5 +1,9 @@
 # myApi
 
+Opinionated template for starting an golang api using [echo](https://echo.labstack.com/), [gorm](http://gorm.io/index.html), Postgres and [swaggo](https://github.com/swaggo/swag).
+
+It contains simple startup app with simple registration & login that provides JWT-based authentication. 
+
 ### prerequisite:
 
 1. run `./rename` to rename the application. e.g. `./rename todoApi`
