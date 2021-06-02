@@ -1,8 +1,9 @@
 # myApi
 
+### What is: 
 Opinionated modular template for starting an golang api using:
 * [echo](https://echo.labstack.com/) web framework.
-* [echo](https://echo.labstack.com/) web framework.
+* [gorm](https://gorm.io/) ORM library.
 * [validator](https://github.com/go-playground/validator) to validate DTOs.
 * [go-conf](https://github.com/mhewedy/go-conf) to read external configurations.
 * Postgres as database.
@@ -18,12 +19,18 @@ It contains:
 * Gitlab CI script.
 * Database scheama migration files found under `db/migrations`
 
-## How it differ from xyz:
+### How it differ from Xyz:
 Unlinke other templates or tools, myApi is adapting the idea of modular monolithc, in which you can use  `pkg/<module_name>` to host user modules, (e.g. `pkg/user` and `pkg/health`).    
 
 The code in the moules can acccess shared services via the `pkg/commons` modules. e.g `commons.DB` to access gorm DB object and `commons.Validate` to access Validate object. (You can put shared services here to such as `Redis` Client)
 
-### How to use it:
+### Module Structure:
+each module (e.g. `pkg/user`, `pkg/main_business_module` ) contains:
+1. `model.go` to contains all model structs and related db-access methods in this module.
+2. `dto.go` contains DTOs.
+3. one or more `<some_function>.go` files (e.g. `login.go`, `register.go`) which contains the [echo](https://echo.labstack.com/) callback function that it registered at `cmd/api/routes/route.go`
+
+## How to use it:
 
 1. Clone the repo or Download the [zip file](https://github.com/mhewedy/myApi/archive/refs/heads/master.zip).
 
