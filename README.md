@@ -2,7 +2,8 @@
 
 Opinionated modular template for starting an golang api using:
 * [echo](https://echo.labstack.com/) web framework.
-* [gorm](http://gorm.io) to access DB.
+* [echo](https://echo.labstack.com/) web framework.
+* [validator](https://github.com/go-playground/validator) to validate DTOs.
 * Postgres as database.
 * [go-migrate](https://github.com/golang-migrate/migrate) for db schema migration.
 * [swaggo](https://github.com/swaggo/swag) to generate swagger.
@@ -14,6 +15,10 @@ It contains:
 * health check endpoint.
 * Multistage Dockerfile
 * Gitlab CI script.
+
+## How it differ from xyz:
+Unlinke other templates or tools, myApi is adapting the idea of module monolithc, in which you can use  `pkg/<module_name>` to host user modules, (e.g. `pkg/user` and `pkg/health`.
+Where code in such modules can acccess to shared services via the `pkg/commons` modules. e.g `commons.DB` to access gorm DB object and `commons.Validate` to access Validate object. (You can put shared services here to such as Redis Client)
 
 ### Steps:
 
