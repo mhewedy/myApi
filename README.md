@@ -25,7 +25,7 @@ Unlike other templates or tools, myApi is adapting the idea of modular monolithi
 The code in the different modules can access shared services via the `pkg/commons` modules. e.g `commons.DB` to access gorm DB object and `commons.Validate` to access Validate object. (You can put shared services here too, such as `Redis` Client)
 
 ### Module Structure:
-each module (e.g. `pkg/user`, `pkg/main_business_module`) contains:
+each module (e.g. `pkg/user`, `pkg/my_module`) contains:
 1. `model.go` to contains all model structs and related db-access methods in this module.
 2. `dto.go` contains DTOs.
 3. one or more `<some_function>.go` files (e.g. `login.go`, `register.go`) which contains the [echo](https://echo.labstack.com/) callback function that it registered at `cmd/api/routes/route.go`
