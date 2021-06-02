@@ -4,7 +4,7 @@ Opinionated modular template for starting an golang api using:
 * [echo](https://echo.labstack.com/) web framework.
 * [echo](https://echo.labstack.com/) web framework.
 * [validator](https://github.com/go-playground/validator) to validate DTOs.
-* [go-conf](https://github.com/mhewedy/go-conf) to read configurations.
+* [go-conf](https://github.com/mhewedy/go-conf) to read external configurations.
 * Postgres as database.
 * [go-migrate](https://github.com/golang-migrate/migrate) for db schema migration.
 * [swaggo](https://github.com/swaggo/swag) to generate swagger.
