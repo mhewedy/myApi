@@ -1,7 +1,7 @@
 # myApi
 
 ### What is: 
-Opinionated modular template for starting an golang api using:
+Opinionated modular template for starting an golang api. It suses:
 * [echo](https://echo.labstack.com/) web framework.
 * [gorm](https://gorm.io/) ORM library.
 * [validator](https://github.com/go-playground/validator) to validate DTOs.
