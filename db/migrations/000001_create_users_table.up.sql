@@ -1,6 +1,5 @@
 create sequence if not exists users_id_seq;
 
-
 create table if not exists users
 (
     id         int8 default nextval('users_id_seq') primary key,

@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  web:
+    # FIXME
+    image: registry.gitlab.com/your/repository/url:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    network_mode: "host"
+    depends_on:
+      - postgres
+      - redis
+    test: ["CMD", "wget", "-qO-", "localhost:8080/api/v1/health"]
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: myApi
+      POSTGRES_PASSWORD: Str0ngP@ss
+      POSTGRES_DB: myApi
+    volumes:
+      - /opt/postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    network_mode: "host"
+
