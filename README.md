@@ -18,6 +18,7 @@ It contains:
 * Multistage Dockerfile
 * Gitlab CI script.
 * Database schema migration files found under `db/migrations`
+* Prometheus middleware bound at `/metrics`
 
 ### How it differs from Xyz:
 Unlike other templates or tools, myApi is adapting the idea of modular monolithic, in which you can use  `pkg/<module_name>` to host different modules, (e.g. `pkg/user` and `pkg/health`).    
