@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -17,6 +18,7 @@ func Configure(e *echo.Echo) {
 	e.Use(middleware.Recover())
 	e.Use(middleware.Secure())
 	e.Use(middleware.CORS())
+	prometheus.NewPrometheus("myApi", nil).Use(e)
 
 	addPublicRoutes(e)
 	addSecuredRoutes(e.Group("", middleware.JWT([]byte(jwt.Secret))))
